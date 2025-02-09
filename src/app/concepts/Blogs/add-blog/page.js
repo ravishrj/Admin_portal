@@ -49,7 +49,7 @@ const ContentEditor = () => {
             TextAlign.configure({ types: ['heading', 'paragraph'] }),
             Color.configure({ types: ['textStyle'] }),
             Dropcursor,
-            Image
+            // Image
         ],
         content: blog.content,
         onUpdate: ({ editor }) => {
@@ -107,7 +107,7 @@ const ContentEditor = () => {
                     const data = await response.json();
                     if (data.secure_url) {
                         setBlog(prev => ({ ...prev, image: data.secure_url })); // ✅ Store Cloudinary image URL
-                        editor.chain().focus().setImage({ src: data.secure_url }).run();
+                        // editor.chain().focus().setImage({ src: data.secure_url }).run();
                         toast.success("Image uploaded successfully!");
                     } else {
                         toast.error("Image upload failed!");
@@ -205,7 +205,7 @@ const ContentEditor = () => {
                         <button onClick={() => editor.chain().focus().toggleOrderedList().run()} className="px-2 py-1 border rounded">1. List</button>
                         <button onClick={() => editor.chain().focus().setTextAlign('center').run()} className="px-2 py-1 border rounded">Center</button>
                         <input type="color" onChange={(e) => editor.chain().focus().setColor(e.target.value).run()} className="border rounded w-10" />
-                        <button onClick={handleImageUpload} className="px-2 py-1 border rounded">📷</button>
+                        {/* <button onClick={handleImageUpload} className="px-2 py-1 border rounded">📷</button> */}
                     </div>
                     )}
 
@@ -213,10 +213,10 @@ const ContentEditor = () => {
                 </div>
 
                 {/* Image Upload */}
-                {/* <div>
+                <div>
                     <button onClick={handleImageUpload} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Upload Image</button>
                     {blog.image && <img src={blog.image} alt="Uploaded" className="w-20 h-20 object-cover rounded-md border mt-2" />}
-                </div> */}
+                </div>
                 
                 {/* Action Buttons */}
                 <div className="flex flex-wrap gap-3 mt-4">
